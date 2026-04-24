@@ -17,5 +17,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::view('/preview/login', 'auth.login');
-Route::view('/preview/register', 'auth.register');
+// 仮ルート（ 管理画面(Blade) 作成後に置き換え ）
+Route::middleware('auth')->group(function () {
+    Route::get('/admin', fn() => '管理画面準備中...')->name('admin');
+});
