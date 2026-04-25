@@ -40,7 +40,7 @@ class Contact extends Model
      */
     public function getGenderLabelAttribute(): string
     {
-        return match ($this->gender) {
+        return match ((int) $this->gender) {
             1 => '男性',
             2 => '女性',
             default => 'その他',

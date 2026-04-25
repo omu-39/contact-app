@@ -7,5 +7,8 @@
 </head>
 <body>
     <h1>サンクスページ</h1>
+    <button>
+        <a href="/">HOME</a>
+    </button>
 </body>
 </html>

@@ -26,7 +26,9 @@ class ContactController extends Controller
     {
         $validated = $request->validated();
 
-        return view('contact.confirm', compact('validated'));
+        $contact = new Contact($validated);
+
+        return view('contact.confirm', compact('contact'));
     }
 
     /**
