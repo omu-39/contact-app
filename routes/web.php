@@ -1,8 +1,6 @@
 <?php
 
-use App\Models\Contact;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ContactController;
 
 /*
 |--------------------------------------------------------------------------
