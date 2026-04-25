@@ -51,7 +51,61 @@
 
             {{-- 電話番号 --}}
             <div>
+                <label for="tel">電話番号</label>
+                <input type="text" name="tel1" id="tel1" value="{{ old('tel1') }}"> -
+                <input type="text" name="tel2" id="tel2" value="{{ old('tel2') }}"> -
+                <input type="text" name="tel3" id="tel3" value="{{ old('tel3') }}">
+                @error('tel')
+                <p>{{ $message }}</p>
+                @enderror
+            </div>
 
+            {{-- 住所 --}}
+            <div>
+                <label for="address">住所</label>
+                <input type="text" name="address" id="address" value="{{ old('address') }}">
+                @error('address')
+                <p>{{ $message }}</p>
+                @enderror
+            </div>
+
+            {{-- 建物名 --}}
+            <div>
+                <label for="building">建物名</label>
+                <input type="text" name="building" id="building" value="{{ old('building') }}">
+                @error('building')
+                <p>{{ $message }}</p>
+                @enderror
+            </div>
+
+            {{-- お問い合わせの種類 --}}
+            <div>
+                <label for="category_id">お問い合わせの種類</label>
+                <select name="category_id" id="category_id">
+                    <option value="">選択してください</option>
+                    @foreach ($categories as $category)
+                        <option value="{{ $category->id }}"
+                            {{ old('category_id') == $category->id ? 'selected' : '' }}>
+                            {{ $category->content }}
+                        </option>
+                    @endforeach
+                </select>
+                @error('category_id')
+                <p>{{ $message }}</p>
+                @enderror
+            </div>
+
+            {{-- お問い合わせ内容 --}}
+            <div>
+                <label for="detail">お問い合わせ内容</label>
+                <textarea name="detail" id="detail">{{ old('detail') }}</textarea>
+                @error('detail')
+                <p>{{ $message }}</p>
+                @enderror
+            </div>
+
+            {{-- ボタン --}}
+            <button type="submit">確認画面</button>
         </form>
     </main>
 </body>

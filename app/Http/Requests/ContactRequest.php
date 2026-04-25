@@ -15,6 +15,18 @@ class ContactRequest extends FormRequest
     }
 
     /**
+     * 電話番号の結合
+     */
+    protected function prepareForValidation()
+    {
+        if ($this->has(['tel1', 'tel2', 'tel3'])) {
+            $this->merge([
+                'tel' => $this->tel1 . $this->tel2 . $this->tel3,
+            ]);
+        }
+    }
+
+    /**
      * バリデーションルール
      */
     public function rules(): array
@@ -24,12 +36,34 @@ class ContactRequest extends FormRequest
             'last_name' => 'required|string|max:8',
             'gender' => 'required|integer|in:1,2,3',
             'email' => 'required|email|max:255',
-            'tel' => 'required|regex:/^[0-9]+$/|max:5',
+            'tel' => 'required|regex:/^[0-9]+$/',
             'address' => 'required|string|max:255',
             'building' => 'nullable|string|max:255',
             'category_id' => 'required|exists:categories,id',
             'detail' => 'required|string|max:120',
         ];
+    }
+
+    /**
+     * 追加バリデーション
+     */
+    public function withValidator($validator)
+    {
+        $validator->after(function ($validator) {
+            $hasError = false;
+            if ($this->filled('tel1') && strlen($this->tel1) > 5) {
+                $hasError = true;
+            }
+            if ($this->filled('tel2') && strlen($this->tel2) > 5) {
+                $hasError = true;
+            }
+            if ($this->filled('tel3') && strlen($this->tel3) > 5) {
+                $hasError = true;
+            }
+            if ($hasError) {
+                $validator->errors()->add('tel', '電話番号の各欄は5桁まで入力してください');
+            }
+        });
     }
 
     /**
@@ -45,7 +79,6 @@ class ContactRequest extends FormRequest
             'email.email' => 'メールアドレスはメール形式で入力してください',
             'tel.required' => '電話番号を入力してください',
             'tel.regex' => '電話番号は 半角英数字で入力してください',
-            'tel.max' => '電話番号は 5桁まで数字で入力してください',
             'address.required' => '住所を入力してください',
             'category_id.required' => 'お問い合わせの種類を選択してください',
             'detail.required' => 'お問い合わせ内容を入力してください',
