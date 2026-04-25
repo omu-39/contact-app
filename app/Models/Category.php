@@ -11,6 +11,16 @@ class Category extends Model
     use HasFactory;
 
     /**
+     * 複数代入可能な属性
+     *
+     * @var array<int, string>
+     */
+    protected $fillable = [
+        'content',
+    ];
+
+
+    /**
      * このカテゴリーに属するお問い合わせを取得
      */
     public function contacts(): HasMany
