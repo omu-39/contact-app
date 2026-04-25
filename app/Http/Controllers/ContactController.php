@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ContactRequest;
 use Illuminate\Http\Request;
+use App\Models\Category;
+use App\Models\Contact;
 
 class ContactController extends Controller
 {
@@ -11,14 +14,30 @@ class ContactController extends Controller
      */
     public function create()
     {
-        return view('contact.contact');
+        $categories = Category::orderBy('id')->get();
+
+        return view('contact.contact', compact('categories'));
     }
 
     /**
      * 確認画面の表示
      */
-    public function confirm(Request $request)
+    public function confirm(ContactRequest $request)
     {
-        $validated = 
+        $validated = $request->validated();
+
+        return view('contact.confirm', compact('validated'));
+    }
+
+    /**
+     * DBに保存
+     */
+    public function store(ContactRequest $request)
+    {
+        $validated = $request->validated();
+
+        Contact::create($validated);
+
+        return redirect()->route('contact.thanks');
     }
 }

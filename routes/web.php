@@ -15,6 +15,8 @@ use App\Http\Controllers\ContactController;
 */
 
 Route::get('/', [ContactController::class, 'create']);
+Route::post('/', [ContactController::class, 'confirm'])->name('contact.confirm');
+Route::post('/confirm', [ContactController::class, 'store'])->name('contact.store');
 
 // 仮ルート（ 管理画面(Blade) 作成後に置き換え ）
 Route::middleware('auth')->group(function () {
