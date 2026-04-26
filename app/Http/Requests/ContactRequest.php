@@ -45,23 +45,16 @@ class ContactRequest extends FormRequest
     }
 
     /**
-     * 追加バリデーション
+     * 電話番号 桁数のバリデーション
      */
     public function withValidator($validator)
     {
         $validator->after(function ($validator) {
-            $hasError = false;
-            if ($this->filled('tel1') && strlen($this->tel1) > 5) {
-                $hasError = true;
-            }
-            if ($this->filled('tel2') && strlen($this->tel2) > 5) {
-                $hasError = true;
-            }
-            if ($this->filled('tel3') && strlen($this->tel3) > 5) {
-                $hasError = true;
-            }
-            if ($hasError) {
-                $validator->errors()->add('tel', '電話番号の各欄は5桁まで入力してください');
+            if (
+                collect(['tel1', 'tel2', 'tel3'])
+                ->contains(fn($tel) => $this->filled($tel) && strlen($this->$tel) > 5)
+            ) {
+                $validator->errors()->add('tel', '電話番号は5桁まで入力してください');
             }
         });
     }
