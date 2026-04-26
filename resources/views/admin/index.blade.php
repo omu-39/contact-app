@@ -24,7 +24,7 @@
     <!-- 検索フォーム -->
 
     <form action="{{ route('admin.search') }}" method="GET">
-    @csrf
+        @csrf
         <input type="text" name="keyword" placeholder="名前やメールアドレスを入力してください" value="{{ request('keyword') }}">
 
         <select name="gender">
@@ -37,9 +37,9 @@
         <select name="category_id" id="category_id">
             <option value="{{ request('category_id') }}">お問い合わせの種類</option>
             @foreach ($categories as $category)
-                <option value="{{ $category->id }}" {{ request('category_id') == $category->id ? 'selected' : '' }}>
-                    {{ $category->content }}
-                </option>
+            <option value="{{ $category->id }}" {{ request('category_id') == $category->id ? 'selected' : '' }}>
+                {{ $category->content }}
+            </option>
             @endforeach
         </select>
 
@@ -49,7 +49,7 @@
         <a href="{{ route('admin.index') }}">
             リセット
         </a>
-        <button></button>
+        <p><a href="{{ route('admin.export', request()->query()) }}" class="export-btn">エクスポート</a></p>
     </form>
 
     <!-- お問い合わせ一覧 -->
@@ -63,14 +63,14 @@
         </tr>
 
         @foreach ($contacts as $contact)
-            <td>{{ $contact->first_name }} {{ $contact->last_name }}</td>
-            <td>{{ $contact->gender_label }}</td>
-            <td>{{ $contact->email }}</td>
-            <td>{{ $contact->category->content }}</td>
-            <td>
-                <a href="#modal-{{ $contact->id }}" class="detail-btn">詳細</a>
-                <x-modal :contact="$contact" />
-            </td>
+        <td>{{ $contact->first_name }} {{ $contact->last_name }}</td>
+        <td>{{ $contact->gender_label }}</td>
+        <td>{{ $contact->email }}</td>
+        <td>{{ $contact->category->content }}</td>
+        <td>
+            <a href="#modal-{{ $contact->id }}" class="detail-btn">詳細</a>
+            <x-modal :contact="$contact" />
+        </td>
         </tr>
         @endforeach
 

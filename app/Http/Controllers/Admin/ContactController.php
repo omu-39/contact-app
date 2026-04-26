@@ -21,9 +21,9 @@ class ContactController extends Controller
     }
 
     /**
-     * お問い合わせ検索
+     * 検索クエリの構築
      */
-    public function search(Request $request)
+    private function buildSearchQuery(Request $request)
     {
         $query = Contact::query();
 
@@ -48,7 +48,17 @@ class ContactController extends Controller
             $query->whereDate('created_at', $request->date);
         }
 
-        $contacts = $query->with('category')->paginate(7);
+        return $query;
+    }
+
+    /**
+     * お問い合わせ検索
+     */
+    public function search(Request $request)
+    {
+        $query = $this->buildSearchQuery($request);
+
+        $contacts = $query->with('category')->paginate(7)->appends($request->all());
         $categories = Category::all();
 
         return view('admin.index', compact('contacts', 'categories'));
@@ -69,5 +79,42 @@ class ContactController extends Controller
     {
         $contact->delete();
         return redirect()->route('admin.index')->with('message', 'お問い合わせを削除しました');
+    }
+
+    /**
+     * お問い合わせ一覧 csvエクスポート
+     */
+    public function export(Request $request)
+    {
+        $query = $this->buildSearchQuery($request);
+        $contacts = $query->with('category')->get();
+
+        $csvHeader = ['お名前', '性別', 'メールアドレス', 'お問い合わせの種類'];
+
+        $callback = function () use ($contacts, $csvHeader) {
+            $file = fopen('php://output', 'w');
+            fputs($file, "\xEF\xBB\xBF");
+            fputcsv($file, $csvHeader);
+
+            foreach ($contacts as $contact) {
+                fputcsv($file, [
+                    $contact->first_name . ' ' . $contact->last_name,
+                    $contact->gender_label,
+                    $contact->email,
+                    $contact->category->content,
+                ]);
+            }
+            fclose($file);
+        };
+
+        $headers = [
+            "Content-type" => "text/csv",
+            "Content-Disposition" => "attachment; filename=contacts_" . date('Ymd') . ".csv",
+            "Pragma" => "no-cache",
+            "Cache-Control" => "must-revalidate, post-check=0, pre-check=0",
+            "Expires" => "0"
+        ];
+
+        return response()->stream($callback, 200, $headers);
     }
 }
