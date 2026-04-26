@@ -10,7 +10,7 @@
 <body>
     <h1>お問い合わせフォーム</h1>
     <main>
-        <form action="{{ route('contact.confirm') }}" method="POST">
+        <form action="/confirm" method="POST">
             @csrf
 
             {{-- 名前 --}}

@@ -6,6 +6,7 @@ use App\Http\Requests\ContactRequest;
 use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\Contact;
+use Illuminate\Support\Facades\Redirect;
 
 class ContactController extends Controller
 {
@@ -16,7 +17,7 @@ class ContactController extends Controller
     {
         $categories = Category::orderBy('id')->get();
 
-        return view('contact.contact', compact('categories'));
+        return view('contact.create', compact('categories'));
     }
 
     /**
@@ -26,19 +27,25 @@ class ContactController extends Controller
     {
         $validated = $request->validated();
 
+        session(['inputs' => $validated]);
+
         $contact = new Contact($validated);
 
         return view('contact.confirm', compact('contact'));
     }
 
     /**
-     * DBに保存
+     * サンクスページ表示 / DBに保存
      */
-    public function store(ContactRequest $request)
+    public function store(Request $request)
     {
-        $validated = $request->validated();
+        $inputs = session('inputs');
 
-        Contact::create($validated);
+        if ($request->has('back')) {
+            return redirect()->route('contact.create')->withInput($inputs);
+        }
+
+        Contact::create($inputs);
 
         return redirect()->route('contact.thanks');
     }
