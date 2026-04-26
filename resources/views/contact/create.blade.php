@@ -8,7 +8,7 @@
 </head>
 
 <body>
-    <h1>お問い合わせフォーム</h1>
+    <x-header />
     <main>
         <form action="/confirm" method="POST">
             @csrf
