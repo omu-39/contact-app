@@ -1,4 +1,4 @@
-/* 最初は隠しておく */
+/* モーダルのオーバーレイ */
 .modal-overlay {
     display: none;
     position: fixed;
@@ -11,14 +11,14 @@
     z-index: 1000;
 }
 
-/* URLの末尾が #modal-123 のようになった時だけ表示される */
+/* モーダルが表示される条件 */
 .modal-overlay:target {
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-/* モーダルの中身（白いボックス） */
+/* モーダルウィンドウ */
 .modal-window {
     background: white;
     padding: 40px;
@@ -27,7 +27,7 @@
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
-/* 閉じボタンのデザイン */
+/* 閉じるボタン */
 .close-button {
     position: absolute;
     right: 20px;
