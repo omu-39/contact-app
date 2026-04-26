@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ContactController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,9 +14,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return redirect()->route('login');
-});
+Route::get('/', [ContactController::class, 'create'])->name('contact.create');
+Route::post('/confirm', [ContactController::class, 'confirm'])->name('contact.confirm');
+Route::post('/thanks', [ContactController::class, 'store'])->name('contact.store');
+Route::get('/thanks', fn() => view('contact.thanks'))->name('contact.thanks');
 
 // 仮ルート（ 管理画面(Blade) 作成後に置き換え ）
 Route::middleware('auth')->group(function () {
