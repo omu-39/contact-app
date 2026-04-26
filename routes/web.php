@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\Admin\ContactController as AdminContactController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,5 +22,9 @@ Route::get('/thanks', fn() => view('contact.thanks'))->name('contact.thanks');
 
 // 仮ルート（ 管理画面(Blade) 作成後に置き換え ）
 Route::middleware('auth')->group(function () {
-    Route::get('/admin', fn() => view('admin.contacts'))->name('admin');
+    Route::get('/admin', [AdminContactController::class, 'index'])->name('admin.index');
+    Route::get('/reset', [AdminContactController::class, 'reset'])->name('admin.reset');
+    Route::get('/search', [AdminContactController::class, 'search'])->name('admin.search');
+    Route::delete('/delete/{contact}', [AdminContactController::class, 'destroy'])->name('admin.delete');
+    Route::get('/export', [AdminContactController::class, 'export'])->name('admin.export');
 });

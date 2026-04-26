@@ -6,7 +6,6 @@ use App\Http\Requests\ContactRequest;
 use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\Contact;
-use Illuminate\Support\Facades\Redirect;
 
 class ContactController extends Controller
 {
