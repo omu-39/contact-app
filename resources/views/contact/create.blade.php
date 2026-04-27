@@ -146,7 +146,7 @@
             </div>
 
             {{-- ボタン --}}
-            <button type="submit" class=" m-auto my-6 bg-[#82776b] text-white py-2 px-8">
+            <button type="submit" class="m-auto my-6 bg-[#82776b] text-white py-2 px-8">
                 確認画面
             </button>
         </form>
