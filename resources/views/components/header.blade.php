@@ -1,11 +1,9 @@
-<header class="flex items-center justify-between bg-white border-b border-gray-200 px-4 py-3 sm:px-6">
-    <div class="min-w-[96px]"></div>
-
-    <h1 class=" text-center text-3xl font-semibold text-stone-500 font-serif">
+<header class="relative flex justify-center items-center bg-white border-b border-gray-200 py-5">
+    <h1 class="text-4xl text-[#82776b] font-serif">
         FashionablyLate
     </h1>
 
-    <div class="min-w-[96px] text-right mr-5">
+    <div class="absolute right-0 mr-5">
         {{ $right ?? '' }}
     </div>
 </header>
