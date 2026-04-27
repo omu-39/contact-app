@@ -11,13 +11,13 @@
 <body>
     <x-header />
     <main>
-        <h2 class="my-10 text-3xl text-center text-2xl font-bold text-stone-500">Contact</h2>
+        <h2 class="my-10 text-3xl text-center text-3xl font-serif text-[#82776b]">Contact</h2>
         <form action="/confirm" method="POST" class="w-3/5 mx-auto flex flex-col gap-6">
             @csrf
 
             {{-- 名前 --}}
             <div class="flex gap-4 items-center">
-                <label class="w-1/3 text-lg text-stone-500">
+                <label class="w-1/3 text-xl text-[#82776b]">
                     お名前 <span class="text-red-500">※</span>
                 </label>
                 <div class="flex-1 flex flex-col gap-1">
@@ -36,7 +36,7 @@
 
             {{-- 性別 --}}
             <div class="flex gap-4 items-center">
-                <label for="gender" class="w-1/3 text-lg text-stone-500">
+                <label for="gender" class="w-1/3 text-xl text-[#82776b]">
                     性別<span class="text-red-500">※</span>
                 </label>
                 <div class="flex-1 flex gap-20">
@@ -57,7 +57,7 @@
 
             {{-- メールアドレス --}}
             <div class="flex gap-4 items-center">
-                <label for="email" class="w-1/3 text-lg text-stone-500">
+                <label for="email" class="w-1/3 text-xl text-[#82776b]">
                     メールアドレス<span class="text-red-500">※</span>
                 </label>
                 <div class="flex-1 flex flex-col gap-1">
@@ -70,7 +70,7 @@
 
             {{-- 電話番号 --}}
             <div class="flex gap-4 items-center">
-                <label for="tel" class="w-1/3 text-lg text-stone-500">
+                <label for="tel" class="w-1/3 text-xl text-[#82776b]">
                     電話番号<span class="text-red-500">※</span>
                 </label>
                 <div class="flex-1 flex flex-col gap-1">
@@ -87,7 +87,7 @@
 
             {{-- 住所 --}}
             <div class="flex gap-4 items-center">
-                <label for="address" class="w-1/3 text-lg text-stone-500">
+                <label for="address" class="w-1/3 text-xl text-[#82776b]">
                     住所<span class="text-red-500">※</span>
                 </label>
                 <div class="flex-1 flex flex-col">
@@ -100,7 +100,7 @@
 
             {{-- 建物名 --}}
             <div class="flex gap-4 items-center">
-                <label for="building" class="w-1/3 text-lg text-stone-500">
+                <label for="building" class="w-1/3 text-xl text-[#82776b]">
                     建物名
                 </label>
                 <div class="flex-1 flex flex-col">
@@ -113,11 +113,11 @@
 
             {{-- お問い合わせの種類 --}}
             <div class="flex gap-4 items-center">
-                <label for="category_id" class="w-1/3 text-lg text-stone-500">
+                <label for="category_id" class="w-1/3 text-xl text-[#82776b]">
                     お問い合わせの種類<span class="text-red-500">※</span>
                 </label>
                 <div class="flex-1 flex flex-col">
-                    <select name="category_id" id="category_id" class="w-1/2 bg-gray-100 px-4 py-2 text-gray-500">
+                    <select name="category_id" id="category_id" class="w-1/2 bg-gray-100 px-4 py-2 text-[#4b5563]">
                         <option value="">選択してください</option>
                         @foreach ($categories as $category)
                         <option value="{{ $category->id }}"
@@ -134,7 +134,7 @@
 
             {{-- お問い合わせ内容 --}}
             <div class="flex gap-4 items-start">
-                <label for="detail" class="w-1/3 text-lg text-stone-500">
+                <label for="detail" class="w-1/3 text-xl text-[#82776b]">
                     お問い合わせ内容<span class="text-red-500">※</span>
                 </label>
                 <div class="flex-1 flex flex-col">
@@ -146,7 +146,7 @@
             </div>
 
             {{-- ボタン --}}
-            <button type="submit" class=" m-auto my-6 bg-stone-600/80 text-white py-2 px-8">
+            <button type="submit" class=" m-auto my-6 bg-[#82776b] text-white py-2 px-8">
                 確認画面
             </button>
         </form>

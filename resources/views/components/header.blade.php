@@ -1,5 +1,5 @@
 <header class="relative flex justify-center items-center bg-white border-b border-gray-200 py-5">
-    <h1 class="text-4xl font-semibold text-stone-500 font-serif">
+    <h1 class="text-4xl text-[#82776b] font-serif">
         FashionablyLate
     </h1>
 
