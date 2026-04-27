@@ -37,7 +37,7 @@
             </table>
             <div class="flex justify-center items-center gap-4 mt-10">
                 <button type="submit" class="bg-[#82776b] text-white py-2 px-8">送信</button>
-                <a href="{{ route('contact.create') }}" class="text-[#82776b] underline">修正する</a>
+                <button type="button" class="text-[#82776b] underline" onclick="window.history.back()">修正する</button>
             </div>
         </form>
     </main>

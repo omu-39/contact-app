@@ -18,16 +18,16 @@
             {{-- 名前 --}}
             <div class="flex gap-4 items-center">
                 <label class="w-1/3 text-xl text-[#82776b]">
-                    お名前 <span class="text-red-500">※</span>
+                    お名前<span class="text-red-500 ml-2">※</span>
                 </label>
                 <div class="flex-1 flex flex-col gap-1">
-                    <input type="text" name="first_name" id="first_name" value="{{ old('first_name') }}" placeholder="例: 山田" class="bg-gray-100 px-5 py-2">
+                    <input type="text" name="first_name" id="first_name" value="{{ old('first_name') }}" placeholder="例: 山田" class="bg-[#f4f4f4] px-5 py-2">
                     @error('first_name')
                     <p class="text-red-500">{{ $message }}</p>
                     @enderror
                 </div>
                 <div class="flex-1 flex flex-col gap-1">
-                    <input type="text" name="last_name" id="last_name" value="{{ old('last_name') }}" placeholder="例: 太郎" class="bg-gray-100 px-5 py-2">
+                    <input type="text" name="last_name" id="last_name" value="{{ old('last_name') }}" placeholder="例: 太郎" class="bg-[#f4f4f4] px-5 py-2">
                     @error('last_name')
                     <p class="text-red-500">{{ $message }}</p>
                     @enderror
@@ -58,10 +58,10 @@
             {{-- メールアドレス --}}
             <div class="flex gap-4 items-center">
                 <label for="email" class="w-1/3 text-xl text-[#82776b]">
-                    メールアドレス<span class="text-red-500">※</span>
+                    メールアドレス<span class="text-red-500 ml-2">※</span>
                 </label>
                 <div class="flex-1 flex flex-col gap-1">
-                    <input type="email" name="email" id="email" value="{{ old('email') }}" placeholder="例: test@example.com" class="bg-gray-100 px-5 py-2">
+                    <input type="email" name="email" id="email" value="{{ old('email') }}" placeholder="例: test@example.com" class="bg-[#f4f4f4] px-5 py-2">
                     @error('email')
                     <p class="text-red-500">{{ $message }}</p>
                     @enderror
@@ -71,13 +71,13 @@
             {{-- 電話番号 --}}
             <div class="flex gap-4 items-center">
                 <label for="tel" class="w-1/3 text-xl text-[#82776b]">
-                    電話番号<span class="text-red-500">※</span>
+                    電話番号<span class="text-red-500 ml-2">※</span>
                 </label>
                 <div class="flex-1 flex flex-col gap-1">
                     <div class="flex-1 flex justify-between">
-                        <input type="text" name="tel1" id="tel1" value="{{ old('tel1') }}" placeholder="080" class="bg-gray-100 px-5 py-2"> -
-                        <input type="text" name="tel2" id="tel2" value="{{ old('tel2') }}" placeholder="1234" class="bg-gray-100 px-5 py-2"> -
-                        <input type="text" name="tel3" id="tel3" value="{{ old('tel3') }}" placeholder="5678" class="bg-gray-100 px-5 py-2">
+                        <input type="text" name="tel1" id="tel1" value="{{ old('tel1') }}" placeholder="080" class="bg-[#f4f4f4] px-5 py-2"> -
+                        <input type="text" name="tel2" id="tel2" value="{{ old('tel2') }}" placeholder="1234" class="bg-[#f4f4f4] px-5 py-2"> -
+                        <input type="text" name="tel3" id="tel3" value="{{ old('tel3') }}" placeholder="5678" class="bg-[#f4f4f4] px-5 py-2">
                     </div>
                     @error('tel')
                     <p class="text-red-500">{{ $message }}</p>
@@ -88,10 +88,10 @@
             {{-- 住所 --}}
             <div class="flex gap-4 items-center">
                 <label for="address" class="w-1/3 text-xl text-[#82776b]">
-                    住所<span class="text-red-500">※</span>
+                    住所<span class="text-red-500 ml-2">※</span>
                 </label>
                 <div class="flex-1 flex flex-col">
-                    <input type="text" name="address" id="address" value="{{ old('address') }}" placeholder="例: 東京都渋谷区千駄ヶ谷1-2-3" class="bg-gray-100 px-5 py-2">
+                    <input type="text" name="address" id="address" value="{{ old('address') }}" placeholder="例: 東京都渋谷区千駄ヶ谷1-2-3" class="bg-[#f4f4f4] px-5 py-2">
                     @error('address')
                     <p class="text-red-500">{{ $message }}</p>
                     @enderror
@@ -104,7 +104,7 @@
                     建物名
                 </label>
                 <div class="flex-1 flex flex-col">
-                    <input type="text" name="building" id="building" value="{{ old('building') }}" placeholder="例: 千駄ヶ谷マンション101" class="bg-gray-100 px-5 py-2">
+                    <input type="text" name="building" id="building" value="{{ old('building') }}" placeholder="例: 千駄ヶ谷マンション101" class="bg-[#f4f4f4] px-5 py-2">
                     @error('building')
                     <p class="text-red-500">{{ $message }}</p>
                     @enderror
@@ -114,10 +114,10 @@
             {{-- お問い合わせの種類 --}}
             <div class="flex gap-4 items-center">
                 <label for="category_id" class="w-1/3 text-xl text-[#82776b]">
-                    お問い合わせの種類<span class="text-red-500">※</span>
+                    お問い合わせの種類<span class="text-red-500 ml-2">※</span>
                 </label>
                 <div class="flex-1 flex flex-col">
-                    <select name="category_id" id="category_id" class="w-1/2 bg-gray-100 px-4 py-2 text-[#4b5563]">
+                    <select name="category_id" id="category_id" class="w-1/2 bg-[#f4f4f4] px-4 py-2 text-[#4b5563]">
                         <option value="">選択してください</option>
                         @foreach ($categories as $category)
                         <option value="{{ $category->id }}"
@@ -135,10 +135,10 @@
             {{-- お問い合わせ内容 --}}
             <div class="flex gap-4 items-start">
                 <label for="detail" class="w-1/3 text-xl text-[#82776b]">
-                    お問い合わせ内容<span class="text-red-500">※</span>
+                    お問い合わせ内容<span class="text-red-500 ml-2">※</span>
                 </label>
                 <div class="flex-1 flex flex-col">
-                    <textarea name="detail" id="detail" class="h-32 bg-gray-100 px-5 py-3" placeholder="お問い合わせ内容をご記載ください">{{ old('detail') }}</textarea>
+                    <textarea name="detail" id="detail" class="h-32 bg-[#f4f4f4] px-5 py-3" placeholder="お問い合わせ内容をご記載ください">{{ old('detail') }}</textarea>
                     @error('detail')
                     <p class="text-red-500">{{ $message }}</p>
                     @enderror
