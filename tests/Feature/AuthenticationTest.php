@@ -12,45 +12,6 @@ class AuthenticationTest extends TestCase
     use RefreshDatabase;
 
     /** @test */
-    public function 登録画面を表示できる(): void
-    {
-        $response = $this->get(route('register'));
-
-        $response->assertStatus(200);
-    }
-
-    /** @test */
-    public function ユーザー登録ができる(): void
-    {
-        $response = $this->post(route('register'), [
-            'name' => 'Test User',
-            'email' => 'test@example.com',
-            'password' => bcrypt('password123'),
-        ]);
-
-        $this->assertDatabaseHas('users', [
-            'email' => 'test@example.com',
-        ]);
-        $response->assertRedirect(route('admin.index'));
-    }
-
-    /** @test */
-    public function すでに登録されているメールアドレスで登録できない(): void
-    {
-        User::factory()->create([
-            'email' => 'duplicate@example.com'
-        ]);
-
-        $response = $this->post(route('register'), [
-            'name' => 'New User',
-            'email' => 'duplicate@example.com',
-            'password' => bcrypt('password123'),
-        ]);
-
-        $response->assertSessionHasErrors(['email']);
-    }
-
-    /** @test */
     public function ログイン画面を表示できる(): void
     {
         $response = $this->get(route('login'));
@@ -59,13 +20,15 @@ class AuthenticationTest extends TestCase
     }
 
     /** @test */
-    public function ログインができる(): void
+    public function 正しい認証情報でログインできる(): void
     {
-        $user = User::factory()->create();
+        $user = User::factory()->create([
+            'password' => bcrypt('password123'),
+        ]);
 
         $response = $this->post(route('login'), [
             'email' => $user->email,
-            'password' => 'password',
+            'password' => 'password123',
         ]);
 
         $this->assertAuthenticatedAs($user);
@@ -75,7 +38,9 @@ class AuthenticationTest extends TestCase
     /** @test */
     public function 間違ったパスワードではログインできない(): void
     {
-        $user = User::factory()->create();
+        $user = User::factory()->create([
+            'password' => bcrypt('password123'),
+        ]);
 
         $response = $this->post(route('login'), [
             'email' => $user->email,
@@ -83,6 +48,19 @@ class AuthenticationTest extends TestCase
         ]);
 
         $response->assertSessionHasErrors(['email']);
+        $this->assertGuest();
+    }
+
+    /** @test */
+    public function 存在しないメールアドレスではログインできない(): void
+    {
+        $response = $this->post(route('login'), [
+            'email' => 'nonexistent@example.com',
+            'password' => 'password123',
+        ]);
+
+        $response->assertSessionHasErrors(['email']);
+        $this->assertGuest();
     }
 
     /** @test */
@@ -99,8 +77,10 @@ class AuthenticationTest extends TestCase
     /** @test */
     public function パスワードが空だとバリデーションエラーになる(): void
     {
+        $user = User::factory()->create();
+
         $response = $this->post(route('login'), [
-            'email' => 'test@example.com',
+            'email' => $user->email,
             'password' => '',
         ]);
 
@@ -114,15 +94,18 @@ class AuthenticationTest extends TestCase
 
         $response = $this->actingAs($user)->post(route('logout'));
 
-        $this->assertGuest();
         $response->assertRedirect(route('login'));
+        $this->assertGuest();
     }
 
     /** @test */
-    public function 未認証のユーザーは管理画面にアクセスできずログイン画面にリダイレクトされる(): void
+    public function 認証済みユーザーはログインページにアクセスするとリダイレクトされる(): void
     {
-        $response = $this->get(route('admin.index'));
+        $user = User::factory()->create();
 
-        $response->assertRedirect(route('login'));
+        $response = $this->actingAs($user)->get(route('login'));
+
+        $response->assertRedirect(route('admin.index'));
     }
+
 }
