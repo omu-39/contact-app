@@ -12,9 +12,11 @@
 <body>
     <x-header>
         <x-slot name="right">
-            <form method="POST" action="{{ route('logout') }}">
+            <form method="POST" action="{{ route('logout') }}" class="block w-full h-full">
                 @csrf
-                <button>logout</button>
+                <button type="submit" class="w-full h-full flex items-center justify-center">
+                    logout
+                </button>
             </form>
         </x-slot>
     </x-header>
