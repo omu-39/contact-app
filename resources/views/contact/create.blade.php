@@ -117,15 +117,20 @@
                     お問い合わせの種類<span class="text-red-500 ml-2">※</span>
                 </label>
                 <div class="flex-1 flex flex-col">
-                    <select name="category_id" id="category_id" class="w-1/2 bg-[#f4f4f4] px-4 py-2 text-[#4b5563]">
-                        <option value="">選択してください</option>
-                        @foreach ($categories as $category)
-                        <option value="{{ $category->id }}"
-                            {{ old('category_id') == $category->id ? 'selected' : '' }}>
-                            {{ $category->content }}
-                        </option>
-                        @endforeach
-                    </select>
+                    <div class="relative inline-block">
+                        <select name="category_id" id="category_id" class="w-1/2 bg-[#f4f4f4] px-4 py-2 text-[#4b5563] appearance-none">
+                            <option value="">選択してください</option>
+                            @foreach ($categories as $category)
+                            <option value="{{ $category->id }}"
+                                {{ old('category_id') == $category->id ? 'selected' : '' }}>
+                                {{ $category->content }}
+                            </option>
+                            @endforeach
+                        </select>
+                        <span class="absolute right-96 top-1/2 -translate-y-1/2 pointer-events-none color text-[#82776b]">
+                            ▼
+                        </span>
+                    </div>
                     @error('category_id')
                     <p class="text-red-500">{{ $message }}</p>
                     @enderror
@@ -146,7 +151,7 @@
             </div>
 
             {{-- ボタン --}}
-            <button type="submit" class=" m-auto my-6 bg-[#82776b] text-white py-2 px-8">
+            <button type="submit" class="m-auto my-6 bg-[#82776b] text-white py-2 px-8">
                 確認画面
             </button>
         </form>

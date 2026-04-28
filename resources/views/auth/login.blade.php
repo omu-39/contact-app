@@ -11,7 +11,7 @@
 <body class="bg-[#f5efe7] text-gray-700">
     <x-header>
         <x-slot name="right">
-            <a href="{{ route('register') }}">
+            <a href="{{ route('register') }}" class="w-full h-full flex items-center justify-center">
                 register
             </a>
         </x-slot>

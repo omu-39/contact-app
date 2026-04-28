@@ -11,7 +11,7 @@
 <body class="min-h-screen bg-[#f5efe7] text-gray-700">
     <x-header>
         <x-slot name="right">
-            <a href="{{ route('login') }}">
+            <a href="{{ route('login') }}" class="w-full h-full flex items-center justify-center">
                 login
             </a>
         </x-slot>

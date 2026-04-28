@@ -3,9 +3,9 @@
         FashionablyLate
     </h1>
 
-    <div class="absolute right-0 mr-5 bg-[#f4f4f4] border border-[#82776b] px-4 py-0.5 mr-20">
-        <p class="text-[#82776b]">
-            {{ $right ?? '' }}
-        </p>
-    </div>
+    @if (isset($right) && $right->isNotEmpty())
+        <div class="absolute right-0 mr-5 bg-[#faf8f6] border border-[#ebdccb] w-20 h-8 mr-24 text-[#d4c6b6]">
+            {{ $right }}
+        </div>
+    @endif
 </header>
