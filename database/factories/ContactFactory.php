@@ -22,10 +22,10 @@ class ContactFactory extends Factory
             'last_name' => fake()->lastName(),
             'gender' => fake()->numberBetween(1, 3),
             'email' => fake()->safeEmail(),
-            'tel' => fake()->phoneNumber(),
+            'tel' => fake()->numerify('###########'),
             'address' => fake()->address(),
             'building' => fake()->buildingNumber(),
-            'detail' => fake()->text(),
+            'detail' => fake()->text(120),
         ];
     }
 }
