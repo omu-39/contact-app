@@ -49,7 +49,6 @@ class AdminControllerTest extends TestCase
         $user = User::factory()->create();
         $contact = Contact::factory()->create();
 
-        // モーダル内の削除ボタン（DELETEリクエスト）を実行
         $response = $this->actingAs($user)->delete(route('admin.delete', $contact));
 
         $this->assertDatabaseMissing('contacts', ['id' => $contact->id]);
