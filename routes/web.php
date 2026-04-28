@@ -20,7 +20,6 @@ Route::post('/confirm', [ContactController::class, 'confirm'])->name('contact.co
 Route::post('/thanks', [ContactController::class, 'store'])->name('contact.store');
 Route::get('/thanks', fn() => view('contact.thanks'))->name('contact.thanks');
 
-// 仮ルート（ 管理画面(Blade) 作成後に置き換え ）
 Route::middleware('auth')->group(function () {
     Route::get('/admin', [AdminContactController::class, 'index'])->name('admin.index');
     Route::get('/reset', [AdminContactController::class, 'reset'])->name('admin.reset');

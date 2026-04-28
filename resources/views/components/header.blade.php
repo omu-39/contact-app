@@ -3,9 +3,7 @@
         FashionablyLate
     </h1>
 
-    <div class="absolute right-0 mr-5 bg-[#f4f4f4] border border-[#82776b] px-4 py-0.5 mr-20">
-        <p class="text-[#82776b]">
-            {{ $right ?? '' }}
-        </p>
+    <div class="absolute right-0 mr-5 bg-[#faf8f6] border border-[#ebdccb] px-4 py-0.5 mr-20 text-[#d4c6b6]">
+        {{ $right ?? '' }}
     </div>
 </header>
