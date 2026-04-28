@@ -32,8 +32,8 @@ class ContactRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'first_name' => 'required|string|max:8',
-            'last_name' => 'required|string|max:8',
+            'first_name' => 'required|string',
+            'last_name' => 'required|string',
             'gender' => 'required|integer|in:1,2,3',
             'email' => 'required|email|max:255',
             'tel' => 'required|regex:/^[0-9]+$/',
@@ -49,6 +49,15 @@ class ContactRequest extends FormRequest
      */
     public function withValidator($validator)
     {
+        $validator->after(function ($validator) {
+            $firstName = $this->input('first_name');
+            $lastName = $this->input('last_name');
+
+            if (mb_strlen($firstName . $lastName) > 8) {
+                $validator->errors()->add('first_name', '名前は姓名合わせて8文字以内で入力してください');
+            }
+        });
+
         $validator->after(function ($validator) {
             if (
                 collect(['tel1', 'tel2', 'tel3'])
@@ -78,4 +87,5 @@ class ContactRequest extends FormRequest
             'detail.max' => 'お問い合わせ内容は120文字以内で入力してください',
         ];
     }
+    
 }
