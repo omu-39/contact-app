@@ -32,7 +32,7 @@
 
             <div class="m-auto w-2/3 flex flex-col">
                 <label for="password" class="text-2xl font-semibold text-[#82776b] mb-4">パスワード</label>
-                <input id="password" name="password" type="password" placeholder="例: coachtech106" class="bg-[#eee] py-2 px-5">
+                <input id="password" name="password" type="password" placeholder="例: coachtech1106" class="bg-[#eee] py-2 px-5">
                 @error('password')
                 <p class="text-red-500">{{ $message }}</p>
                 @enderror
