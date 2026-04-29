@@ -3,9 +3,20 @@
 ## 環境構築
 -Dockerビルド
     ・git clone https://github.com/omu-39/contact-app.git
+    ・cd contact-app
 
--Laravel環境構築
-    ・
+## Laravel環境構築
+    ・・docker run --rm \
+        -u "$(id -u):$(id -g)" \
+        -v "$(pwd):/var/www/html" \
+        -w /var/www/html \
+        -e COMPOSER_CACHE_DIR=/tmp/composer_cache \
+        laravelsail/php82-composer:latest \
+        composer install
+    ・cp .env.example .env
+    ・./vendor/bin/sail up -d
+    ・./vendor/bin/sail artisan key:generate
+    ・./vendor/bin/sail artisan migrate --seed
 
 ## 使用技術(実行環境)
 
@@ -16,15 +27,9 @@
 - MySQL
 - composer install
 
-ーーーーーーーーーーーーエイリアス設定ーーーーーーーーーーーー
-
-alias sail='[ -f sail ] && bash sail || bash vendor/bin/sail'
-
-ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
-
 ## ER図
 
 ![ER図](docs/er-diagram.png)
 
 ## URL
-
+- 開発環境：http://localhost
