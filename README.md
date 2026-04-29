@@ -17,6 +17,9 @@
 - ./vendor/bin/sail up -d
 - ./vendor/bin/sail artisan key:generate
 - ./vendor/bin/sail artisan migrate --seed
+- ./vendor/bin/sail npm install
+- ./vendor/bin/sail npm run build
+- 開発時（Vite）: ./vendor/bin/sail npm run dev
 
 ## 使用技術(実行環境)
 
@@ -36,4 +39,3 @@
 - お問い合わせ入力確認画面 :http://localhost/confirm
 - お問い合わせサンクスページ :http://localhost/thanks
 - お問い合わせ管理画面 :http://localhost/admin
-
