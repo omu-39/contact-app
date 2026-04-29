@@ -1,19 +1,18 @@
 # Contact-app
 
 ## 環境構築
-### Dockerビルド
 - git clone https://github.com/omu-39/contact-app.git
 - cd contact-app
-
-### Laravel環境構築
-- cp .env.example .env
-- docker run --rm \
-    -u "$(id -u):$(id -g)" `\`
-    -v "$(pwd):/var/www/html" `\`
-    -w /var/www/html `\`
-    -e COMPOSER_CACHE_DIR=/tmp/composer_cache `\`
-    laravelsail/php82-composer:latest `\`
+```bash
+docker run --rm \
+    -u "$(id -u):$(id -g)" \
+    -v "$(pwd):/var/www/html" \
+    -w /var/www/html \
+    -e COMPOSER_CACHE_DIR=/tmp/composer_cache \
+    laravelsail/php82-composer:latest \
     composer install
+```
+- cp .env.example .env
 - ./vendor/bin/sail up -d
 - ./vendor/bin/sail artisan key:generate
 - ./vendor/bin/sail artisan migrate --seed
@@ -39,3 +38,4 @@
 - お問い合わせ入力確認画面 :http://localhost/confirm
 - お問い合わせサンクスページ :http://localhost/thanks
 - お問い合わせ管理画面 :http://localhost/admin
+- phpMyAdmin :http://localhost:8080/
