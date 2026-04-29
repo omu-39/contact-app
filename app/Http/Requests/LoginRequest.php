@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Validator;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 
@@ -39,8 +40,8 @@ class LoginRequest extends FormRequest
         ];
     }
 
-    public function withValidator($validator) {
-        $validator->after(function ($validator) {
+    public function withValidator(Validator $validator) {
+        $validator->after(function (Validator $validator) {
             $user = User::where('email', $this->email)->first();
 
             if (!$user || !Hash::check($this->password, $user->password)) {
