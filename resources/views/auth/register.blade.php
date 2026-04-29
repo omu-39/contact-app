@@ -47,9 +47,9 @@
                 @enderror
             </div>
 
-            <button type="submit" class="block m-auto bg-[#726254] px-10 py-2 my-16 text-white">
+            <button type=" submit" class="block m-auto bg-[#726254] px-10 py-2 my-16 text-white">
                 登録
-            </button>
+                </button>
         </form>
     </main>
 </body>
