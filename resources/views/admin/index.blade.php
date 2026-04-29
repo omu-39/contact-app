@@ -101,7 +101,7 @@
             </tr>
 
             @foreach ($contacts as $contact)
-            <tr class="border border-collapse border-[#d8d3cd] h-12 text-[#82776b] text-lg">
+            <tr class="border border-collapse border-[#d8d3cd] h-12 text-[#82776b] text-lg hover:bg-[#faf8f6]">
                 <td>{{ $contact->first_name }} {{ $contact->last_name }}</td>
                 <td>{{ $contact->gender_label }}</td>
                 <td>{{ $contact->email }}</td>
