@@ -6,12 +6,12 @@
 - cd contact-app
 
 ### Laravel環境構築
-- docker run --rm \\
-    -u "$(id -u):$(id -g)" \\
-    -v "$(pwd):/var/www/html" \\
-    -w /var/www/html \\
-    -e COMPOSER_CACHE_DIR=/tmp/composer_cache \\
-    laravelsail/php82-composer:latest \\
+- docker run --rm \
+    -u "$(id -u):$(id -g)" `\`
+    -v "$(pwd):/var/www/html" `\`
+    -w /var/www/html `\`
+    -e COMPOSER_CACHE_DIR=/tmp/composer_cache `\`
+    laravelsail/php82-composer:latest `\`
     composer install
 - cp .env.example .env
 - ./vendor/bin/sail up -d
