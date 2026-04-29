@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\LoginController;
 use App\Http\Controllers\Admin\ContactController as AdminContactController;
 
 /*
@@ -27,3 +28,5 @@ Route::middleware('auth')->group(function () {
     Route::delete('/delete/{contact}', [AdminContactController::class, 'destroy'])->name('admin.delete');
     Route::get('/export', [AdminContactController::class, 'export'])->name('admin.export');
 });
+
+Route::post('/login', [LoginController::class, 'login'])->name('login');

@@ -20,7 +20,7 @@
     <main>
         <h1 class="text-center text-3xl text-stone-500 font-serif my-16">Login</h1>
 
-        <form method="POST" action="{{ route('login') }}" class="m-auto w-1/3 bg-white rounded px-8 py-10 border-2 border-gray-200">
+        <form method="POST" action="{{ route('login') }}" class="m-auto w-1/3 bg-white rounded px-8 py-10 border-2 border-gray-200" novalidate>
             @csrf
             <div class="m-auto w-2/3 flex flex-col mt-6 mb-10">
                 <label for="email" class="text-2xl font-semibold text-[#82776b] mb-4">メールアドレス</label>
