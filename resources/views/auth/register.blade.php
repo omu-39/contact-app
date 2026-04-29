@@ -39,7 +39,7 @@
                 @enderror
             </div>
 
-            <div class="m-auto w-2/3 flex flex-col mb-10">
+            <div class="m-auto w-2/3 flex flex-col mb-12">
                 <label for="password" class="text-2xl font-semibold text-[#82776b] mb-4">パスワード</label>
                 <input id="password" name="password" type="password" placeholder="例: coachtech106" required class="bg-[#eee] py-2 px-5">
                 @error('password')
@@ -47,7 +47,7 @@
                 @enderror
             </div>
 
-            <button type=" submit" class="block m-auto bg-[#726254] px-10 py-2 my-16 text-white">
+            <button type=" submit" class="block m-auto bg-[#726254] px-10 py-2 mb-6 text-white">
                 登録
                 </button>
         </form>

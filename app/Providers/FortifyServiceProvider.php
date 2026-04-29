@@ -11,13 +11,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Str;
-use App\Models\User;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Validation\ValidationException;
 use Laravel\Fortify\Fortify;
 use Laravel\Fortify\Contracts\LogoutResponse;
-use App\Http\Requests\LoginRequest;
-
+use Laravel\Fortify\Http\Requests\LoginRequest;
 
 class FortifyServiceProvider extends ServiceProvider
 {
@@ -60,25 +56,6 @@ class FortifyServiceProvider extends ServiceProvider
             return view('auth.register');
         });
 
-        Fortify::authenticateUsing(function (Request $request) {
-            $request->validate([
-                'email' => 'required|email',
-                'password' => 'required',
-            ], [
-                'email.required' => 'メールアドレスを入力してください',
-                'email.email' => 'メールアドレスはメール形式で入力してください',
-                'password.required' => 'パスワードを入力してください',
-            ]);
-
-            $user = User::where('email', $request->email)->first();
-
-            if ($user && Hash::check($request->password, $user->password)) {
-                return $user;
-            }
-
-            throw ValidationException::withMessages([
-                'password' => 'ログイン情報が登録されていません',
-            ]);
-        });
+        
     }
 }

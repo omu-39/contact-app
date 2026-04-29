@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 
 
@@ -13,7 +14,7 @@ class LoginRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -40,9 +41,9 @@ class LoginRequest extends FormRequest
 
     public function withValidator($validator) {
         $validator->after(function ($validator) {
-            $user = User::all();
+            $user = User::where('email', $this->email)->first();
 
-            if ($this->password !== $user->password) {
+            if (!$user || !Hash::check($this->password, $user->password)) {
                 $validator->errors()->add('password', 'ログイン情報が登録されていません');
             }
         });
