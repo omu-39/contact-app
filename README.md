@@ -37,5 +37,7 @@ docker run --rm \
 - お問い合わせ入力画面：http://localhost
 - お問い合わせ入力確認画面 :http://localhost/confirm
 - お問い合わせサンクスページ :http://localhost/thanks
+- ログイン画面 :http://localhost/login
+- ユーザー登録画面 :http://localhost/register
 - お問い合わせ管理画面 :http://localhost/admin
 - phpMyAdmin :http://localhost:8080/
