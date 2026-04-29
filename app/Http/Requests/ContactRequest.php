@@ -87,5 +87,4 @@ class ContactRequest extends FormRequest
             'detail.max' => 'お問い合わせ内容は120文字以内で入力してください',
         ];
     }
-
 }
