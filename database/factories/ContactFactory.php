@@ -24,8 +24,9 @@ class ContactFactory extends Factory
             'email' => fake()->safeEmail(),
             'tel' => fake()->numerify('###########'),
             'address' => fake()->address(),
-            'building' => fake()->buildingNumber(),
-            'detail' => fake()->text(120),
+            'building' => fake()->lastName() . 'マンション' . fake()->numberBetween(101, 999),
+            'detail' => fake()->realtext(120),
+            'created_at' => fake()->dateTimeBetween('-1 month', 'now'),
         ];
     }
 }
