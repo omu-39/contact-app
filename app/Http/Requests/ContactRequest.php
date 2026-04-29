@@ -19,10 +19,12 @@ class ContactRequest extends FormRequest
      */
     protected function prepareForValidation()
     {
-        if ($this->has(['tel1', 'tel2', 'tel3'])) {
+        if ($this->filled(['tel1', 'tel2', 'tel3'])) {
             $this->merge([
                 'tel' => $this->tel1 . $this->tel2 . $this->tel3,
             ]);
+        } else {
+            $this->merge(['tel' => null]);
         }
     }
 
@@ -45,7 +47,7 @@ class ContactRequest extends FormRequest
     }
 
     /**
-     * 電話番号 桁数のバリデーション
+     * 追加のバリデーション
      */
     public function withValidator($validator)
     {
